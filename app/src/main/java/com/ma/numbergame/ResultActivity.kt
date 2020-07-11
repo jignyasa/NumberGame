@@ -29,6 +29,7 @@ class ResultActivity : AppCompatActivity() {
            // list.add(item)
             if(it.size>0) {
                 var list=it as ArrayList<RandomNumberEntity>
+                list.add(0,RandomNumberEntity())
                  adapter.addData(list)
             }
         })

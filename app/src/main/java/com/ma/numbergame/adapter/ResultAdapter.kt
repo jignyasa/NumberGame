@@ -33,16 +33,14 @@ class ResultAdapter(val context:Context) :RecyclerView.Adapter<ResultAdapter.VHo
         val item=alResults.get(position)
         if(position==0)
         {
-            holder.itemView.tvNo.text="1"
+            holder.itemView.tvNo.text="No"
             holder.itemView.tvGuessNo.text="Guess No"
             holder.itemView.tvDateTime.text="DateTime"
             holder.itemView.tvResult.text="Result"
         }else {
-            var cal=Calendar.getInstance()
             holder.itemView.tvNo.text = item.no.toString()
             holder.itemView.tvGuessNo.text = item.guessNo
-            cal.set(Calendar.MILLISECOND,item.dateTime.toInt())
-            holder.itemView.tvDateTime.text = getDateFormate("dd-MM-yyyy h:mm a",cal)
+            holder.itemView.tvDateTime.text = getDateFormate("dd-MM-yyyy h:mm a",item.dateTime)
             holder.itemView.tvResult.text = item.result
         }
     }
@@ -53,12 +51,12 @@ class ResultAdapter(val context:Context) :RecyclerView.Adapter<ResultAdapter.VHo
         notifyDataSetChanged()
     }
 
-    fun getDateFormate(dateFormate:String,cal: Calendar):String
+    fun getDateFormate(dateFormate:String,timeMillies:Long):String
     {
         var sDate=""
         val sdf= SimpleDateFormat(dateFormate, Locale.ENGLISH)
         try {
-            sDate=sdf.format(cal.timeInMillis)
+            sDate=sdf.format(timeMillies)
         }catch (e: Exception)
         {
             Log.e("error",e.message)
