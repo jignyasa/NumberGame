@@ -17,6 +17,7 @@ class ResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
+        supportActionBar?.title="Result"
         adapter= ResultAdapter(this)
         rvResult.adapter=adapter
         rvResult.layoutManager=LinearLayoutManager(this)
